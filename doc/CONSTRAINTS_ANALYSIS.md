@@ -53,3 +53,32 @@
 | SE-005 | Residual Risks | Cannot claim system is "secure"; record residual security risks. | Threat modelling must identify weaknesses; risk register must document accepted risks. |
 
 ---
+
+## 6. Constraint Trade-Off Analysis
+
+### Cost vs. Scalability
+
+| Dimension | Detail |
+|-----------|--------|
+| **The Trade-Off** | Zero/Low-cost hosting (CR-001) vs. future scalability requirements (NFR-002: 50 concurrent users) |
+| **Constraint A** | Cost: Prefer free or low-cost services (CR-001) |
+| **Constraint B** | Quality: System must handle at least 50 concurrent users (NFR-002) |
+| **Analysis** | Free-tier cloud services typically have limitations: CPU throttling, database connection limits (often 20 connections), storage caps, and cold-start delays. 50 concurrent users may exceed free-tier limits. |
+| **Decision** | Select a platform that provides a generous free tier with documented scalability options. Design the application to be stateless so it can scale horizontally when needed. Use connection pooling to manage database connections efficiently. |
+| **Ripple Effect** | The architecture must separate the web application from the database so they can be scaled independently. This may influence M2 architecture decisions. |
+| **Risk** | If the organisation grows beyond the free tier capacity, operational costs will increase. The team must document the projected cost per 1,000 users and include this in the final project evaluation. |
+
+---
+
+## Summary
+
+| Category | Count | Key Focus Areas |
+|----------|-------|-----------------|
+| **Scope Constraints** | 3 | Fixed scope, minimum capabilities, no unapproved additions |
+| **Schedule Constraints** | 3 | 4 milestones, fixed end date, review lead time |
+| **Cost/Resource Constraints** | 4 | Free services, team size, operational cost, learning curve |
+| **Quality Constraints** | 4 | Measurable quality, acceptance criteria, test evidence, defect management |
+| **Security Constraints** | 5 | Lifecycle responsibility, secrets, encryption, RBAC, residual risks |
+| **Trade-Offs** | 1 | Cost vs. Scalability |
+
+---
