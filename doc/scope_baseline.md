@@ -2,7 +2,7 @@
 
 ## 1. In-Scope
 
-All functional requirements identified are committed to the M1 baseline:
+All FRs identified are committed to the M1 baseline:
 
 | ID | Capability | FR Link | Priority |
 |----|------------|---------|----------|
@@ -37,5 +37,39 @@ All functional requirements identified are committed to the M1 baseline:
 | DS-003 | SLA (Service Level Agreement) Reporting | Requires operational data to define meaningful SLAs. |
 | DS-004 | Automated Escalation Rules | Depends on actual usage patterns and staff workflows observed post-deployment. |
 | DS-005 | Bulk Request Import (CSV/Excel) | Staff capability to batch-create requests for maintenance events. |
+
+---
+
+## 4. Deliberate Exclusion Defence: OS-001 (Mobile Application)
+
+### Rationale
+
+FRs (FR-001 to FR-007) all assume web-based interaction. Building a native mobile application would introduce:
+
+1. **Development Complexity:** Requires separate codebases (iOS/Android) or cross-platform frameworks (React Native/Flutter), which the team does not currently have expertise in.
+
+2. **Testing Overhead:** Mobile testing requires device fragmentation, OS version compatibility, and App Store/Play Store submission processes.
+
+3. **Operational Cost:** Ongoing maintenance, updates, developer accounts ($99/year for Apple), and store fees.
+
+4. **Security Risk:** Mobile device security, data storage on devices, and offline capabilities introduce additional threat vectors not covered by the security requirements.
+
+### Stakeholder Agreement
+
+Management agreed that a responsive web application (accessible via mobile browser) will meet 80% of user needs for M1, with a dedicated mobile application evaluated after Phase 1 based on actual usage data.
+
+### Downstream Consequence
+
+By excluding the mobile app now, we preserve development capacity for core web functionality. However, this forces the UI design to be fully responsive and touch-friendly to accommodate mobile browser users. This constraint will influence M2 design decisions (e.g., choosing a responsive CSS framework such as Bootstrap or Tailwind).
+
+---
+
+## Summary
+
+| Category | Count |
+|----------|-------|
+| **In-Scope Items** | 7 |
+| **Out-of-Scope Exclusions** | 5 |
+| **Deferred Items** | 5 |
 
 ---
