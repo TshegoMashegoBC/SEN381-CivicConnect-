@@ -6,7 +6,7 @@
 **Owner:** Engineering Larpers
 **Derived from:** PED v1.0 (M1 baseline), NFR-001 – NFR-006, Constraints SC/SH/CR/QU/SE
 **Feeds into:** ADR-001 – ADR-004, Architecture Diagrams, RTM (M2 design links)
-**Last updated:** [YYYY-MM-DD](2026-09-23)
+**Last updated:** (2026-09-23)
 
 ---
 
@@ -135,4 +135,4 @@ ASRs not satisfied by the M2 architecture become risks in the M2 Risk Register.
 
 | Version | Date | Author | Change |
 |---------|------|--------|--------|
-| 1.0 (draft) | [YYYY-MM-DD](2026-09-23) | Katlego Lethole | Initial ASR extraction from M1 baseline |
+| 1.0 (draft) | (2026-09-23) | Katlego Lethole | Initial ASR extraction from M1 baseline |
