@@ -87,3 +87,4 @@
 | Domain | Infrastructure | ↑ (via interfaces) |
 | Infrastructure | Data Persistence | ↓ |
 
+> **Note:** Domain sits at the core and depends on no outer layer. Infrastructure implements interfaces defined by the Domain (Dependency Inversion Principle).
