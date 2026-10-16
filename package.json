@@ -1,0 +1,11 @@
+{
+
+  "script": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
