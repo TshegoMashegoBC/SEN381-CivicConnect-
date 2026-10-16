@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: civicconnect-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: devpassword
+    command: ["--replSet", "rs0", "--bind_ip_all"]
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'localhost:27017'}]}) }" | mongosh --quiet
+      interval: 5s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
+
+  api:
+    build: ./api
+    container_name: civicconnect-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      MONGODB_URI: mongodb://admin:devpassword@mongo:27017/civicconnect?authSource=admin&replicaSet=rs0
+      JWT_SECRET: devsecret-change-in-prod
+      NODE_ENV: development
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+    command: npm run start:dev
+
+  web:
+    build: ./web
+    container_name: civicconnect-web
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    environment:
+      VITE_API_URL: http://localhost:3000
+    command: npm run dev -- --host 0.0.0.0
+
+volumes:
+  mongo_data:
